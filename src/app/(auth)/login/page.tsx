@@ -47,13 +47,11 @@ export default function LoginPage() {
       const role = session?.user?.role
 
       if (role === "ADMIN") {
-        router.push("/painel/dashboard")
+        window.location.href = "/painel/dashboard"
       } else if (role === "CLIENT") {
-        router.push("/area/dashboard")
+        window.location.href = "/area/dashboard"
       } else {
-        // Fallback: recarrega e deixa o proxy redirecionar
-        router.refresh()
-        router.push("/")
+        window.location.href = "/"
       }
     } catch (err) {
       console.error("[login] erro inesperado:", err)
