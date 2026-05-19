@@ -3,6 +3,7 @@ import Credentials from "next-auth/providers/credentials"
 
 // Config edge-safe (sem Prisma) — usada no proxy/middleware
 export default {
+  trustHost: true,
   providers: [
     Credentials({
       credentials: {
