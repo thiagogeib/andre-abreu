@@ -1,0 +1,312 @@
+// Plataforma André Abreu — Treinamentos Corporativos (Aviação)
+// Prisma 7 + PostgreSQL (Neon)
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────
+
+enum Role {
+  ADMIN
+  CLIENT
+}
+
+enum ProgramStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  COMPLETED
+  CANCELLED
+}
+
+enum ProgramType {
+  PALESTRA
+  WORKSHOP
+  TREINAMENTO
+  PROGRAMA
+}
+
+enum SessionStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+  RESCHEDULED
+}
+
+enum MaterialType {
+  PDF
+  IMAGE
+  LINK
+  VIDEO_URL
+  PRESENTATION
+}
+
+enum LeadStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+enum BlogPostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+// ─────────────────────────────────────────────
+// USER
+// ─────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  emailVerified DateTime?
+  passwordHash  String
+  role          Role      @default(CLIENT)
+  avatarUrl     String?
+  phone         String?
+  isActive      Boolean   @default(true)
+
+  companyId String?
+  company   Company? @relation(fields: [companyId], references: [id])
+
+  accounts Account[]
+  sessions AuthSession[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([companyId])
+  @@index([role])
+}
+
+// ─────────────────────────────────────────────
+// NEXTAUTH
+// ─────────────────────────────────────────────
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model AuthSession {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─────────────────────────────────────────────
+// COMPANY
+// ─────────────────────────────────────────────
+
+model Company {
+  id           String  @id @default(cuid())
+  name         String
+  legalName    String?
+  cnpj         String? @unique
+  segment      String?
+  website      String?
+  logoUrl      String?
+  notes        String?
+  contactName  String?
+  contactEmail String?
+  contactPhone String?
+
+  users    User[]
+  programs Program[]
+
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([cnpj])
+  @@index([name])
+}
+
+// ─────────────────────────────────────────────
+// PROGRAM
+// ─────────────────────────────────────────────
+
+model Program {
+  id          String        @id @default(cuid())
+  title       String
+  description String?
+  type        ProgramType
+  status      ProgramStatus @default(DRAFT)
+  objectives  String?
+  audience    String?
+  startDate   DateTime?
+  endDate     DateTime?
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  sessions  ProgramSession[]
+  materials Material[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([companyId])
+  @@index([status])
+  @@index([type])
+}
+
+// ─────────────────────────────────────────────
+// SESSION
+// ─────────────────────────────────────────────
+
+model ProgramSession {
+  id          String        @id @default(cuid())
+  title       String
+  description String?
+  status      SessionStatus @default(SCHEDULED)
+  scheduledAt DateTime
+  duration    Int?
+  location    String?
+  summary     String?
+  attendees   Int?
+
+  programId String
+  program   Program @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([programId])
+  @@index([scheduledAt])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────
+// MATERIAL
+// ─────────────────────────────────────────────
+
+model Material {
+  id          String       @id @default(cuid())
+  title       String
+  description String?
+  type        MaterialType
+  url         String
+  fileKey     String?
+  fileSize    Int?
+  isPublic    Boolean      @default(false)
+
+  programId String
+  program   Program @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([programId])
+  @@index([type])
+}
+
+// ─────────────────────────────────────────────
+// BLOG POST
+// ─────────────────────────────────────────────
+
+model BlogPost {
+  id              String         @id @default(cuid())
+  title           String
+  slug            String         @unique
+  excerpt         String?
+  content         String
+  coverUrl        String?
+  status          BlogPostStatus @default(DRAFT)
+  metaTitle       String?
+  metaDescription String?
+  tags            String[]
+
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([slug])
+  @@index([status])
+  @@index([publishedAt])
+}
+
+// ─────────────────────────────────────────────
+// CONTACT LEAD
+// ─────────────────────────────────────────────
+
+model ContactLead {
+  id          String     @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  company     String?
+  jobRole     String?
+  message     String
+  status      LeadStatus @default(NEW)
+  serviceType String?
+  adminNotes  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([email])
+  @@index([createdAt])
+}
+
+// ─────────────────────────────────────────────
+// TESTIMONIAL
+// ─────────────────────────────────────────────
+
+model Testimonial {
+  id          String  @id @default(cuid())
+  authorName  String
+  authorRole  String?
+  company     String?
+  content     String
+  avatarUrl   String?
+  isPublished Boolean @default(false)
+  order       Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isPublished])
+  @@index([order])
+}
