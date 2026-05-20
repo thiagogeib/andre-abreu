@@ -355,9 +355,9 @@ interface BlogPostPreview {
 
 function Blog({ posts }: { posts: BlogPostPreview[] }) {
   const fallback: BlogPostPreview[] = [
-    { id: "f1", slug: "comunicacao-cockpit-para-sala-de-reuniao", tags: ["Comunicação"], title: "O que a comunicação do cockpit pode ensinar às suas reuniões", excerpt: "Na aviação, comunicação ambígua custa vidas. Nas empresas, custa projetos, clientes e talentos.", publishedAt: null },
-    { id: "f2", slug: "lideranca-sob-pressao-licoes-aviacao", tags: ["Liderança"], title: "Liderança sob pressão: lições de quem comanda aeronaves", excerpt: "Como tomar decisões rápidas, corretas e seguras quando o tempo é curto e as consequências são altas.", publishedAt: null },
-    { id: "f3", slug: "fator-humano-por-que-times-erram", tags: ["Fator Humano"], title: "Fator humano: por que times de alta performance ainda erram", excerpt: "Entender por que erros acontecem em equipes competentes é o primeiro passo para uma cultura de segurança.", publishedAt: null },
+    { id: "f1", slug: "comunicacao-cockpit-reunioes", tags: ["Comunicação"], title: "O que a comunicação do cockpit pode ensinar às suas reuniões", excerpt: "Na aviação, comunicação ambígua custa vidas. Nas empresas, custa projetos, clientes e talentos.", publishedAt: null },
+    { id: "f2", slug: "tomada-de-decisao-sob-pressao", tags: ["Liderança"], title: "Tomada de decisão sob pressão: o modelo que pilotos usam em emergência", excerpt: "Quando tudo dá errado ao mesmo tempo, pilotos não improvisam — seguem um modelo mental treinado para situações de alta pressão.", publishedAt: null },
+    { id: "f3", slug: "fator-humano-times-alta-performance", tags: ["Fator Humano"], title: "Fator humano: por que times de alta performance ainda erram", excerpt: "Profissionais competentes, treinados e motivados ainda cometem erros. A aviação estudou esse fenômeno por décadas.", publishedAt: null },
   ]
 
   const items = posts.length > 0 ? posts : fallback
