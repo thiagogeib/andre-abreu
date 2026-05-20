@@ -3,8 +3,6 @@
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { Menu, Plane } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 
@@ -53,14 +51,17 @@ function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3">
+          <Link
+            href="/login"
+            className="text-white/60 hover:text-white text-sm font-medium transition-colors cursor-pointer px-3 py-1.5"
+          >
+            Entrar
+          </Link>
           <Link
             href="#contato"
-            className={cn(
-              buttonVariants({ size: "sm" }),
-              "cursor-pointer font-semibold"
-            )}
-            style={{ background: GOLD, color: NAVY_DEEP, borderColor: "transparent" }}
+            className="inline-flex items-center px-5 h-9 rounded-full text-sm font-semibold cursor-pointer transition-opacity hover:opacity-90"
+            style={{ background: GOLD, color: NAVY_DEEP }}
           >
             Quero um Treinamento
           </Link>
@@ -84,13 +85,21 @@ function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="#contato"
-                className={cn(buttonVariants(), "cursor-pointer font-semibold mt-4")}
-                style={{ background: GOLD, color: NAVY_DEEP, borderColor: "transparent" }}
-              >
-                Quero um Treinamento
-              </Link>
+              <div className="flex flex-col gap-3 mt-4">
+                <Link
+                  href="#contato"
+                  className="inline-flex items-center justify-center h-11 rounded-full font-semibold cursor-pointer transition-opacity hover:opacity-90"
+                  style={{ background: GOLD, color: NAVY_DEEP }}
+                >
+                  Quero um Treinamento
+                </Link>
+                <Link
+                  href="/login"
+                  className="inline-flex items-center justify-center h-11 rounded-full font-semibold cursor-pointer border border-white/20 text-white/80 hover:bg-white/10 transition-colors"
+                >
+                  Entrar
+                </Link>
+              </div>
             </div>
           </SheetContent>
         </Sheet>

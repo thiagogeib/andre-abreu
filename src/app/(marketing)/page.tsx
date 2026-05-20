@@ -105,21 +105,18 @@ function Hero() {
             </p>
           </FadeUp>
 
-          <FadeUp delay={0.3} className="flex flex-col sm:flex-row gap-4">
+          <FadeUp delay={0.3} className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
             <Link
               href="#contato"
-              className={cn(buttonVariants({ size: "lg" }), "font-semibold text-base cursor-pointer")}
-              style={{ background: GOLD, color: NAVY_DEEP, borderColor: "transparent" }}
+              className="inline-flex items-center gap-2 px-8 h-12 rounded-full font-semibold text-base cursor-pointer transition-opacity hover:opacity-90"
+              style={{ background: GOLD, color: NAVY_DEEP }}
             >
-              Quero um Treinamento <ArrowRight className="w-4 h-4 ml-2" />
+              Quero um Treinamento <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="#servicos"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "border-white/30 text-white hover:bg-white/10 font-semibold text-base cursor-pointer"
-              )}
-              style={{ borderColor: "rgba(255,255,255,0.3)" }}
+              className="inline-flex items-center gap-2 px-8 h-12 rounded-full font-semibold text-base cursor-pointer border border-white/30 text-white hover:bg-white/10 transition-colors"
+              style={{ background: "transparent" }}
             >
               Ver Serviços
             </Link>
