@@ -7,10 +7,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
-  { href: "#servicos", label: "Serviços" },
-  { href: "#temas", label: "Temas" },
-  { href: "#sobre", label: "Sobre André" },
-  { href: "#blog", label: "Blog" },
+  { href: "/#servicos", label: "Serviços" },
+  { href: "/#temas", label: "Temas" },
+  { href: "/#sobre", label: "Sobre André" },
+  { href: "/blog", label: "Blog" },
 ]
 
 const GOLD = "oklch(0.74 0.14 81)"
@@ -59,7 +59,7 @@ function Header() {
             Entrar
           </Link>
           <Link
-            href="#contato"
+            href="/#contato"
             className="inline-flex items-center px-5 h-9 rounded-full text-sm font-semibold cursor-pointer transition-opacity hover:opacity-90"
             style={{ background: GOLD, color: NAVY_DEEP }}
           >
@@ -87,7 +87,7 @@ function Header() {
               ))}
               <div className="flex flex-col gap-3 mt-4">
                 <Link
-                  href="#contato"
+                  href="/#contato"
                   className="inline-flex items-center justify-center h-11 rounded-full font-semibold cursor-pointer transition-opacity hover:opacity-90"
                   style={{ background: GOLD, color: NAVY_DEEP }}
                 >
