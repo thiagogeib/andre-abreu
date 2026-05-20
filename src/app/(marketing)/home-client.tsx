@@ -193,8 +193,8 @@ function Servicos() {
           ))}
         </div>
         <FadeUp delay={0.4} className="text-center mt-12">
-          <Link href="#contato" className={cn(buttonVariants({ size: "lg" }), "font-semibold cursor-pointer")} style={{ background: GOLD, color: NAVY_DEEP, borderColor: "transparent" }}>
-            Falar sobre o meu caso <ChevronRight className="w-4 h-4 ml-1" />
+          <Link href="#contato" className="inline-flex items-center gap-2 px-8 h-12 rounded-full font-semibold text-base cursor-pointer transition-opacity hover:opacity-90" style={{ background: GOLD, color: NAVY_DEEP }}>
+            Falar sobre o meu caso <ChevronRight className="w-4 h-4" />
           </Link>
         </FadeUp>
       </div>
