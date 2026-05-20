@@ -8,6 +8,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import {
   ArrowLeft,
+  Award,
   BookOpen,
   Calendar,
   Users,
@@ -173,9 +174,20 @@ export default async function ClienteProgramaDetailPage({ params }: PageProps) {
             <h1 className="text-xl font-semibold text-foreground">{program.title}</h1>
             <Badge variant="secondary" className="text-[11px]">{TYPE_LABELS[program.type]}</Badge>
           </div>
-          <Badge variant="outline" className={cn("mt-1 text-[11px]", STATUS_COLORS[program.status])}>
-            {STATUS_LABELS[program.status]}
-          </Badge>
+          <div className="flex flex-wrap items-center gap-2 mt-1">
+            <Badge variant="outline" className={cn("text-[11px]", STATUS_COLORS[program.status])}>
+              {STATUS_LABELS[program.status]}
+            </Badge>
+            {program.status === "COMPLETED" && (
+              <Link
+                href={`/area/programas/${program.id}/certificado`}
+                className={cn(buttonVariants({ variant: "outline", size: "sm" }), "h-6 text-[11px] gap-1 cursor-pointer text-blue-600 border-blue-200 hover:bg-blue-50")}
+              >
+                <Award className="size-3" />
+                Ver Certificado
+              </Link>
+            )}
+          </div>
         </div>
       </div>
 
