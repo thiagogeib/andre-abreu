@@ -258,7 +258,7 @@ function Sobre() {
                   <p className="text-7xl font-black text-gradient-gold leading-none">27</p>
                   <p className="text-lg font-medium text-white/80 mt-2">anos de aviação</p>
                   <div className="mt-8 space-y-3 text-left">
-                    {["Piloto comercial", "Instrutor de simulador", "Gerência de operações", "Gestão de segurança"].map((item) => (
+                    {["Treinamento em aviação", "Gestão de segurança", "Gerência de operações", "Facilitador corporativo"].map((item) => (
                       <div key={item} className="flex items-center gap-3">
                         <div className="w-1.5 h-1.5 rounded-full" style={{ background: GOLD }} />
                         <span className="text-sm text-white/70">{item}</span>
@@ -274,9 +274,9 @@ function Sobre() {
             <p className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: GOLD }}>Sobre André Abreu</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: NAVY }}>Da cabine para a sala de reunião.</h2>
             <div className="space-y-4 text-slate-600 leading-relaxed">
-              <p>Com mais de 27 anos de experiência prática na aviação — em operação, instrução e liderança — André Abreu desenvolveu uma visão única sobre o que faz equipes funcionarem em ambientes de alta pressão.</p>
-              <p>A aviação não tolera falhas de comunicação, liderança fraca ou decisões mal tomadas. Por isso construiu ao longo das décadas uma cultura de segurança, performance e responsabilidade que poucas indústrias conseguem replicar.</p>
-              <p>O trabalho de André é traduzir essa experiência real para o contexto de cada empresa, respeitando a cultura e as particularidades de cada time.</p>
+              <p>Com mais de 27 anos atuando no setor de aviação — em treinamento, gestão de segurança e operações — André Abreu desenvolveu uma visão única sobre o que faz equipes funcionarem em ambientes de alta pressão.</p>
+              <p>A aviação não tolera falhas de comunicação, liderança fraca ou decisões mal tomadas. André passou décadas dentro desse setor, formando profissionais e construindo uma cultura de segurança, performance e responsabilidade.</p>
+              <p>O trabalho dele é traduzir essa experiência para o contexto de cada empresa — respeitando a cultura e as particularidades de cada time.</p>
             </div>
             <div className="mt-10 grid grid-cols-3 gap-6 pt-8 border-t border-slate-100">
               {[{ value: "27+", label: "Anos de aviação" }, { value: "MBA", label: "Gestão de pessoas" }, { value: "IATA", label: "Certificações" }].map((item) => (
