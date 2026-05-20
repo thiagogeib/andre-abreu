@@ -1,9 +1,10 @@
 import type { NextAuthConfig } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 
-// Config edge-safe (sem Prisma) — usada no proxy/middleware
+// Config edge-safe (sem Prisma) — usada no middleware
 export default {
   trustHost: true,
+  secret: process.env.AUTH_SECRET,
   providers: [
     Credentials({
       credentials: {
