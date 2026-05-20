@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#1a2a42"/>
+  <!-- Airplane silhouette pointing top-right -->
+  <path
+    d="M24 8L8 15.5l5.5 1.5L15 24l3-4 5.5 1.5L24 8z"
+    fill="#d4a520"
+  />
+</svg>
