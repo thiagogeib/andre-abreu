@@ -93,17 +93,39 @@ export default async function BlogPostPage({ params }: Props) {
       )}
 
       {/* Content */}
-      <article className="max-w-3xl mx-auto px-6 py-16">
+      <article className="max-w-2xl mx-auto px-6 py-16">
         <div
-          className="prose prose-slate prose-lg max-w-none
-            prose-headings:font-bold prose-headings:text-slate-800
-            prose-p:text-slate-600 prose-p:leading-relaxed
+          className="
+            prose prose-slate prose-lg max-w-none
+
+            prose-p:text-slate-600 prose-p:leading-[1.85] prose-p:mb-6
+
+            prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-14 prose-h2:mb-5
+            prose-h2:pb-3 prose-h2:border-b prose-h2:border-slate-200
+
+            prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-10 prose-h3:mb-3
+
+            prose-strong:text-slate-800 prose-strong:font-semibold
+
+            prose-blockquote:border-l-[3px] prose-blockquote:pl-5 prose-blockquote:py-1
+            prose-blockquote:my-8 prose-blockquote:italic prose-blockquote:text-slate-500
+            prose-blockquote:not-italic
+
+            prose-ul:my-6 prose-ul:space-y-2
+            prose-ol:my-6 prose-ol:space-y-2
+            prose-li:text-slate-600 prose-li:leading-relaxed
+
+            prose-hr:my-12 prose-hr:border-slate-200
+
             prose-a:font-medium prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-slate-800
-            prose-blockquote:border-l-4 prose-blockquote:italic prose-blockquote:text-slate-500
-            prose-code:bg-slate-100 prose-code:px-1 prose-code:rounded prose-code:text-sm
-            prose-img:rounded-xl"
-          style={{ "--tw-prose-links": NAVY } as React.CSSProperties}
+
+            prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5
+            prose-code:rounded prose-code:text-sm prose-code:text-slate-700
+            prose-code:before:content-none prose-code:after:content-none
+
+            prose-img:rounded-xl prose-img:shadow-md
+          "
+          style={{ "--tw-prose-headings": NAVY, "--tw-prose-links": NAVY } as React.CSSProperties}
           dangerouslySetInnerHTML={{ __html: html }}
         />
 
