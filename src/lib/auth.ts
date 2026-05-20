@@ -21,10 +21,8 @@ declare module "next-auth" {
   }
 }
 
-
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
-  secret: process.env.AUTH_SECRET,
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
@@ -60,19 +58,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  callbacks: {
-    jwt({ token, user }) {
-      if (user) {
-        token.role = user.role
-        token.companyId = user.companyId
-      }
-      return token
-    },
-    session({ session, token }) {
-      session.user.id = token.sub!
-      session.user.role = token.role as Role
-      session.user.companyId = (token.companyId as string | null) ?? null
-      return session
-    },
-  },
 })
