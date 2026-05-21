@@ -111,7 +111,7 @@ export function AdminShell({ children, userName, userInitial }: AdminShellProps)
         style={{ background: "var(--sidebar)" }}
       >
         <SidebarLogo />
-        <Separator className="bg-[var(--sidebar-border)] mx-3" />
+        <Separator className="bg-[var(--sidebar-border)]" />
 
         <div className="flex flex-col gap-1 py-4 flex-1 overflow-y-auto">
           <p className="px-6 py-1 text-[10px] font-semibold uppercase tracking-widest text-[oklch(0.45_0.025_248)]">
@@ -120,7 +120,7 @@ export function AdminShell({ children, userName, userInitial }: AdminShellProps)
           <SidebarNav pathname={pathname} />
         </div>
 
-        <Separator className="bg-[var(--sidebar-border)] mx-3" />
+        <Separator className="bg-[var(--sidebar-border)]" />
         <div className="p-4">
           <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[var(--sidebar-accent)]">
             <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[var(--brand-gold)] text-[oklch(0.18_0.05_248)] text-xs font-bold uppercase">
